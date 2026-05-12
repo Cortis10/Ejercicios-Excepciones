@@ -2,31 +2,37 @@ import java.util.Scanner;
 import java.util.InputMismatchException;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
 public class Ejercicio1 {
     public static void main(String [] args) {
         Scanner entrada = null;
+        PrintWriter salida = null;
         int a, b;
         File archivo = new File("entrada.txt");
 
         try {
             entrada = new Scanner(archivo);
+            salida = new PrintWriter("salida.txt");
             a = entrada.nextInt();
             b = entrada.nextInt();
-            System.out.println("La division es: " + a/b);
+            salida.println("La division es: " + a/b);
         }
         catch (FileNotFoundException e) {
-            System.out.println("Archivo no encontrado");
+            System.err.println("Archivo no encontrado");
         }
         catch (InputMismatchException e)    {
-            System.out.println("Entrada no valida");
+            salida.println("Entrada no valida");
         }
         catch (ArithmeticException e)   {
-            System.out.print("Division por cero");
+            salida.println("Division por cero");
         }
         finally {
             if (entrada != null)    {
                 entrada.close();
+            }
+            if (salida != null) {
+                salida.close();
             }
         }
     }
