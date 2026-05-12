@@ -1,18 +1,22 @@
 import java.util.Scanner;
 import java.util.InputMismatchException;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class Ejercicio1 {
     public static void main(String [] args) {
         Scanner entrada = null;
         int a, b;
+        File archivo = new File("entrada.txt");
 
         try {
-            entrada = new Scanner(System.in);
-            System.out.print("Escribe 1er numero: ");
+            entrada = new Scanner(archivo);
             a = entrada.nextInt();
-            System.out.print("Escribe 2do numero: ");
             b = entrada.nextInt();
             System.out.println("La division es: " + a/b);
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("Archivo no encontrado");
         }
         catch (InputMismatchException e)    {
             System.out.println("Entrada no valida");
