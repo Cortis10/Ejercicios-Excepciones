@@ -1,0 +1,3 @@
+123456, Luis Gonzalez, 9.5
+456123, Pedro Martinez, 8.5
+231465, Ana Gutierrez, 7.6
