@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
+import java.io.FileWriter;
+import java.io.IOException;
 
 // DAO = Data Access Object
 public class AlumnoDAO {
@@ -44,5 +46,30 @@ public class AlumnoDAO {
         }
 
         return listaAlumnos;
+    }
+
+    public void agregaAlumno(Alumno alumno) {
+        PrintWriter salida = null;
+        FileWriter archivo = null;
+        try{
+            List<Alumno> listaAlumnos = this.obtenerTodos();
+            if (listaAlumnos.contains(alumno))  {
+                throw new EstudianteDuplicadoException("Ya existe un alumno con la misma clave");
+            }
+            archivo = new FileWriter(nombreArchivo, true);
+            salida = new PrintWriter(archivo);
+            salida.println(alumno.toString());
+        }
+        catch (FormatoArchivoException e)   {
+            e.printStackTrace();
+        }
+        catch (IOException e)   {
+            System.out.println("No se puede escribir en el archivo: " + nombreArchivo);
+        }
+        finally {
+            if (salida != null) {
+                salida.close();
+            }
+        }
     }
 }
