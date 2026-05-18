@@ -13,7 +13,7 @@ public class AlumnoDAO {
         this.nombreArchivo = nombreArchivo;
     }
 
-    public List<Alumno> obtenerTodos()  {
+    public List<Alumno> obtenerTodos() throws FormatoArchivoException {
         List<Alumno> listaAlumnos = new ArrayList<>();
         Scanner entrada = null;
         File archivo = new File(nombreArchivo);
@@ -30,6 +30,9 @@ public class AlumnoDAO {
                 Alumno alumno = new Alumno(clave, arreglo[1], calificacion);
                 listaAlumnos.add(alumno);
             }
+        }
+        catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+            throw new FormatoArchivoException("Se esperaba un numero");
         }
         catch (FileNotFoundException e) {
             System.out.println("Archivo no encontrado: " + nombreArchivo);
