@@ -2,4 +2,3 @@
 456123, Pedro Martinez, 8.5
 231465, Ana Gutierrez, 7.6
 987654, Pedro Gonzalez, 8.5
-987654, Pedro Gonzalez, 8.5
