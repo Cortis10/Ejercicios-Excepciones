@@ -28,6 +28,13 @@ public class Alumno {
         }
 
     }
+    public void setCalificacion(double calificacion){
+        if(calificacion > 10 || calificacion<0){
+                throw new CalificacionInvalidaException("La calificacion es invalida");
+            }
+        this.calificacion=calificacion;
+    }
+    
     public int getClave(){
         return clave;
     }

@@ -5,7 +5,7 @@ public class Principal {
         AlumnoDAO alumnoDAO = new AlumnoDAO("alumnos.txt");
        
         try {
-            alumnoDAO.eliminarAlumno(456123);
+            alumnoDAO.modificarAlumno(123456, 8.6);
         }
         catch(EstudianteDuplicadoException e){
             System.out.println(e.getMessage());

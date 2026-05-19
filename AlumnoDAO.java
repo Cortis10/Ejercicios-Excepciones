@@ -116,4 +116,24 @@ public class AlumnoDAO {
         }
         
     }
+    public void modificarAlumno(int clave, double calificacion){
+        try{
+            List<Alumno> alumnos= this.obtenerTodos();
+            Iterator<Alumno> it = alumnos.iterator();
+            boolean encontrado = false;
+            while (it.hasNext()) {
+                Alumno alumno = it.next();
+                if(alumno.getClave()== clave){
+                    alumno.setCalificacion(calificacion);
+                    encontrado = true;
+                }
+            }
+            if(!encontrado){
+                throw new EstudianteNoEncontradoException("No existe el alumno con la clave " + clave);
+            }    escribirTodos(alumnos);
+        }
+        catch(FormatoArchivoException e){
+            System.out.println(e.getMessage());
+        }
+    }
 }
